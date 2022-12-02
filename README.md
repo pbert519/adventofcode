@@ -1,1 +1,1 @@
-Advent of Code 2021 solutions in rust
+Advent of Code solutions in rust
