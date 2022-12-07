@@ -1,10 +1,12 @@
-use std::{fs::File, io::{BufReader, BufRead}, collections::VecDeque};
+use std::{
+    collections::VecDeque,
+    fs::File,
+    io::{BufRead, BufReader},
+};
 
 fn main() {
-        
     let file = File::open("input.txt").unwrap();
     let mut input = BufReader::new(file);
-
 
     let mut stacks_str = String::new();
     while let Ok(bytes) = input.read_line(&mut stacks_str) {
@@ -13,13 +15,12 @@ fn main() {
         }
     }
 
-    let number_of_stacks = (stacks_str.lines().next().unwrap().len() + 1)/4;
+    let number_of_stacks = (stacks_str.lines().next().unwrap().len() + 1) / 4;
     println!("Number of Stacks: \n{}", number_of_stacks);
 
-    
     let mut stacks: Vec<VecDeque<char>> = Vec::new();
     for i in 0..number_of_stacks {
-        let char_index = 1 + 4*i;
+        let char_index = 1 + 4 * i;
         let mut stack = VecDeque::new();
 
         for line in stacks_str.lines() {
@@ -30,18 +31,17 @@ fn main() {
             }
         }
         stacks.push(stack);
-
     }
 
     println!("Stacks: \n{:#?}", stacks);
 
     input.lines().for_each(|line| {
         let line = line.unwrap();
-        let mut line = line.split(" ");
-        
+        let mut line = line.split(' ');
+
         let count = line.nth(1).unwrap().parse::<usize>().unwrap();
-        let source = line.nth(1).unwrap().parse::<usize>().unwrap() -1;
-        let dest = line.nth(1).unwrap().parse::<usize>().unwrap() -1;
+        let source = line.nth(1).unwrap().parse::<usize>().unwrap() - 1;
+        let dest = line.nth(1).unwrap().parse::<usize>().unwrap() - 1;
 
         println!("move {} from {} to {}", count, source, dest);
 
@@ -49,14 +49,9 @@ fn main() {
             let moved_crate = stacks[source].pop_back().unwrap();
             stacks[dest].push_back(moved_crate);
         }
-
     });
 
-
-    
-
     println!("Stacks move: \n{:#?}", stacks);
-
 
     let mut result = String::new();
     for stack in stacks {
@@ -66,15 +61,10 @@ fn main() {
 
     println!("Result is: {}", result);
 
-
-
     // part 2
 
-
-            
     let file = File::open("input.txt").unwrap();
     let mut input = BufReader::new(file);
-
 
     let mut stacks_str = String::new();
     while let Ok(bytes) = input.read_line(&mut stacks_str) {
@@ -83,13 +73,12 @@ fn main() {
         }
     }
 
-    let number_of_stacks = (stacks_str.lines().next().unwrap().len() + 1)/4;
+    let number_of_stacks = (stacks_str.lines().next().unwrap().len() + 1) / 4;
     println!("Number of Stacks: \n{}", number_of_stacks);
 
-    
     let mut stacks: Vec<VecDeque<char>> = Vec::new();
     for i in 0..number_of_stacks {
-        let char_index = 1 + 4*i;
+        let char_index = 1 + 4 * i;
         let mut stack = VecDeque::new();
 
         for line in stacks_str.lines() {
@@ -100,18 +89,17 @@ fn main() {
             }
         }
         stacks.push(stack);
-
     }
 
     println!("Stacks: \n{:#?}", stacks);
 
     input.lines().for_each(|line| {
         let line = line.unwrap();
-        let mut line = line.split(" ");
-        
+        let mut line = line.split(' ');
+
         let count = line.nth(1).unwrap().parse::<usize>().unwrap();
-        let source = line.nth(1).unwrap().parse::<usize>().unwrap() -1;
-        let dest = line.nth(1).unwrap().parse::<usize>().unwrap() -1;
+        let source = line.nth(1).unwrap().parse::<usize>().unwrap() - 1;
+        let dest = line.nth(1).unwrap().parse::<usize>().unwrap() - 1;
 
         println!("move {} from {} to {}", count, source, dest);
 
@@ -124,16 +112,9 @@ fn main() {
             let moved_crate = intermediate_stack.pop_back().unwrap();
             stacks[dest].push_back(moved_crate);
         }
-
-
-
     });
 
-
-    
-
     println!("Stacks move: \n{:#?}", stacks);
-
 
     let mut result = String::new();
     for stack in stacks {
@@ -142,6 +123,4 @@ fn main() {
     }
 
     println!("Result is: {}", result);
-
-
 }

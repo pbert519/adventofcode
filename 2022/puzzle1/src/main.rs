@@ -6,7 +6,6 @@ fn main() {
     let input = BufReader::new(file).lines();
 
     let mut elves_with_food: Vec<i32> = vec![0; 1];
-    
 
     input.for_each(|food_item| {
         if let Ok(calories) = food_item.expect("Could not read string").parse::<i32>() {
@@ -15,11 +14,9 @@ fn main() {
         } else {
             elves_with_food.push(0);
         }
-
     });
 
     elves_with_food.sort();
-
 
     println!("Elves with food: {:?}", elves_with_food);
 
@@ -28,7 +25,8 @@ fn main() {
 
     elves_with_food.reverse();
     let top_three_elves_calories: i32 = elves_with_food[0..3].iter().sum();
-    println!("Top three elves carry {} calories", top_three_elves_calories);
-
-
+    println!(
+        "Top three elves carry {} calories",
+        top_three_elves_calories
+    );
 }
