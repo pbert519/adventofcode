@@ -10,8 +10,6 @@ const Y_ROW: i64 = 2000000;
 fn main() {
     let file = File::open("input.txt").unwrap();
 
-    let mut beacons = BTreeSet::new();
-
     let input = BufReader::new(file)
         .lines()
         .map(|line| {
@@ -29,8 +27,6 @@ fn main() {
             let b_y = b_y_str[0..b_y_str.len()].parse::<i64>().unwrap();
 
             //println!("Sensor at {},{} with beacon {},{}", s_x, s_y, b_x, b_y);
-
-            beacons.insert((b_x, b_y));
 
             ((s_x, s_y), (b_x, b_y))
         })
