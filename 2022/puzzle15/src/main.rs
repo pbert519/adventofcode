@@ -1,5 +1,4 @@
 use std::{
-    collections::BTreeSet,
     fs::File,
     io::{BufRead, BufReader},
 };
